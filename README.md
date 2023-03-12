@@ -7,22 +7,22 @@ Designing a homing propellant device
 Create a gun which will be installed on a robodog. This gun can be controlled via the console
 
 ### **Project Tasks**
-1.
-2.
-3.
-4.
-5.
-6.
+1. Elaboration of the concept
+2. Study of the necessary literature
+3. Installing the gun
+4. Creating a controller that allows  to control the gun
+5. Create a target
+
 
 ### **Project team**
 
-|Name| Role | Competence | Project objective |
-|---|---|---| ---- |
-|Galkin Alexey Dmitrievich| | | |
-|Tsirulev Nikolay Vladimirovich| | | |
-|Sletyurin Kirill Sergeevich| | | |
-|Kudryavov Leonid Vadimovich| | | |
-|Kochkozharov Ivan Vyacheslavovich| | | |
+|Name| Role |
+|---|---|
+|Galkin Alexey Dmitrievich| Teamlead|
+|Tsirulev Nikolay Vladimirovich| Backend| 
+|Sletyurin Kirill Sergeevich| Physicist-mathematician| 
+|Kudryavov Leonid Vadimovich| 3D |
+|Kochkozharov Ivan Vyacheslavovich| DevOps|
 
 ### **Project customer**
 Department 806 “Computational Mathematics and programming".
