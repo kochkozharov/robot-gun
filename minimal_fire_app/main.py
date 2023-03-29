@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 from importlib import import_module
 import os
-"""import RPi.GPIO as GPIO"""
+import RPi.GPIO as GPIO
 import time
 from flask import Flask, render_template, Response, request
 
