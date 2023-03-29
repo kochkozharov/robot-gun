@@ -1,0 +1,12 @@
+[Unit]
+Description=Robot Gun flask app
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=admin
+ExecStart=/home/admin/robot_gun/venv/bin/python -m flask --app /home/admin/robot_gun/app.py run --host=0.0.0.0
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
