@@ -13,9 +13,10 @@ def index():
         button_value = request.form['button_value']
         if button_value == 'value':
             GPIO.setmode(GPIO.BOARD)
-            gpio_value = 1
+            gpio_value = 15
             GPIO.setup(gpio_value, GPIO.OUT)
             GPIO.output(gpio_value, GPIO.HIGH)
+            time.sleep(1)
             GPIO.cleanup()
     else:
         return render_template('index.html')
