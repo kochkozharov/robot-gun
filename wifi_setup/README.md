@@ -21,7 +21,7 @@
 2. `sudo apt full-upgrade`
 3. `sudo apt install git vim`
 4. `git clone https://gitlab.mai.ru/AlDGalkin/robot_gun/-/tree/feature/minimal_app`
-5. `cd robot_gun`
+5. `cd robot_gun/wifi_setup`
 6. `sudo ./setup.sh`
 7. `sudo reboot`
 
