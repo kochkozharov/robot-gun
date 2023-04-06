@@ -30,7 +30,7 @@
 Абитуриенты МАИ, кафедра 806, посетители дней открытых дверей.
 
 ### **Ссылки***
-Miro: https://miro.com/app/board/uXjVPhjRGJ0=/
+Miro: https://miro.com/app/board/uXjVPhjRGJ0=/     
 Trello: https://trello.com/b/Ce0M3ckV/проект
 
 
