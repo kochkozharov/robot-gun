@@ -14,7 +14,7 @@ def index():
 @app.route("/fire")
 def fire():
     GPIO.setmode(GPIO.BCM)
-    gpio_value = 15
+    gpio_value = 5
     GPIO.setup(gpio_value, GPIO.OUT)
     GPIO.output(gpio_value, GPIO.HIGH)
     time.sleep(1)
