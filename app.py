@@ -31,18 +31,10 @@ def servo(angle):
     gpio_servo=13
     GPIO.setup(gpio_servo,GPIO.OUT)
     pwm = GPIO.PWM(gpio_servo,50)
-    pwm.start(0)
-    duty = angle / 18 + 2
-    current_duty = pwm.get_duty_cycle()
-    speed=10
-    if current_duty < duty:
-        for i in range(current_duty, duty, speed):
-            pwm.ChangeDutyCycle(i)
-            time.sleep(0.02)
-    else:
-        for i in range(current_duty, duty, -speed):
-            pwm.ChangeDutyCycle(i)
-            time.sleep(0.02)
+    pwm.start(8)
+    duty = angle / 18. + 3.
+    pwm.ChangeDutyCycle(duty)
+    sleep(0.3)
     pwm.stop()
     GPIO.cleanup()
     return "ok"
