@@ -42,5 +42,5 @@ def servo(angle):
 def angle_to_percent (angle) :
     minDC = 1.75
     maxDC = 13.15
-    requiredDC = (angle/180*(maxDC-minDC)+minDC)/100*maxPWMRange
+    requiredDC = (angle/180*(maxDC-minDC)+minDC)/100*2000
     return requiredDC
