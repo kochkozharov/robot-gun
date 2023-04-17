@@ -29,12 +29,15 @@ def fire():
 def servo(angle):
     GPIO.setmode(GPIO.BCM)
     gpio_servo=13
-    GPIO.setup(gpio_servo,GPIO.OUT)
+    GPIO.setup(gpio_servo, GPIO.OUT)
+    GPIO.output(gpio_servo, GPIO.HIGH)
     pwm = GPIO.PWM(gpio_servo,50)
-    pwm.start(8)
-    duty = angle / 18. + 3.
+    pwm.start(0)
+    duty = angle / 18 + 2
     pwm.ChangeDutyCycle(duty)
-    time.sleep(0.3)
+    time.sleep(2)
+    GPIO.output(gpio_servo,GPIO.LOW)
+    pwm.ChangeDutyCycle(0)
     pwm.stop()
     GPIO.cleanup()
     return "ok"
