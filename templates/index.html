@@ -1,13 +1,18 @@
 <!DOCTYPE html>
-<html
-<head>
+<html>
+<head> 
     <meta charset="UTF-8">
     <title>Fire Page</title>
+    <script type="text/javascript">        
+        function sendMotion (action) {
+           request = new XMLHttpRequest ( );
+           request.open ("GET", action, true);
+           request.send ( );
+        }
+    </script>
 </head>
 <body>
     <h2>Fire page</h2>
-    <form method="POST" action="/">
-        <button type="submit" name="button_value" value="value">FIRE</button>
-    </form>
+    <input type="button" value="fire" id="fire" onclick="sendMotion ('fire');"/>
 </body>
 </html>

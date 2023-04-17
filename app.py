@@ -7,16 +7,20 @@ from flask import Flask, render_template, Response, request
 
 app = Flask(__name__)
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/')
 def index():
-    if request.method == 'POST':
-        button_value = request.form['button_value']
-        if button_value == 'value':
-            GPIO.setmode(GPIO.BCM)
-            gpio_value = 15
-            GPIO.setup(gpio_value, GPIO.OUT)
-            GPIO.output(gpio_value, GPIO.HIGH)
-            time.sleep(1)
-            GPIO.cleanup()
     return render_template('index.html')
 
+@app.route("/fire")
+def fire():
+    GPIO.setmode(GPIO.BCM)
+    gpio_fire = 5
+    gpio_signal=6
+    GPIO.setup(gpio_signal, GPIO.IN)
+
+    GPIO.setup(gpio_fire, GPIO.OUT)
+    GPIO.output(gpio_fire, GPIO.HIGH)
+    while GPIO.input(gpio_signal) == GPIO.HIGH:
+        time.sleep(0.01)
+    GPIO.cleanup()
+    return "ok"
