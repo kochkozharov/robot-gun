@@ -14,9 +14,13 @@ def index():
 @app.route("/fire")
 def fire():
     GPIO.setmode(GPIO.BCM)
-    gpio_value = 5
-    GPIO.setup(gpio_value, GPIO.OUT)
-    GPIO.output(gpio_value, GPIO.HIGH)
-    time.sleep(1)
+    gpio_fire = 5
+    gpio_signal=6
+    GPIO.setup(gpio_signal, GPIO.IN)
+
+    GPIO.setup(gpio_fire, GPIO.OUT)
+    GPIO.output(gpio_fire, GPIO.HIGH)
+    while GPIO.input(gpio_signal) == GPIO.HIGH:
+        time.sleep(0.01)
     GPIO.cleanup()
     return "ok"
