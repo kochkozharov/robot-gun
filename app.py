@@ -30,14 +30,23 @@ def servo(angle):
     GPIO.setmode(GPIO.BCM)
     gpio_servo=13
     GPIO.setup(gpio_servo, GPIO.OUT)
-    GPIO.output(gpio_servo, GPIO.HIGH)
     pwm = GPIO.PWM(gpio_servo,50)
-    pwm.start(0)
-    duty = angle / 18 + 2
-    pwm.ChangeDutyCycle(duty)
-    time.sleep(2)
-    GPIO.output(gpio_servo,GPIO.LOW)
-    pwm.ChangeDutyCycle(0)
+    pwm.start(angle_to_percent(0))
+    time.sleep(1)
+    pwm.ChangeDutyCycle(angle_to_percent(angle))
+    time.sleep(1)
     pwm.stop()
     GPIO.cleanup()
     return "ok"
+
+def angle_to_percent (angle) :
+    if angle > 180 or angle < 0 :
+        return False
+
+    start = 4
+    end = 12.5
+    ratio = (end - start)/180
+
+    angle_as_percent = angle * ratio
+
+    return start + angle_as_percent
