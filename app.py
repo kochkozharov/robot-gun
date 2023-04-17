@@ -34,7 +34,7 @@ def servo(angle):
     pwm.start(8)
     duty = angle / 18. + 3.
     pwm.ChangeDutyCycle(duty)
-    sleep(0.3)
+    time.sleep(0.3)
     pwm.stop()
     GPIO.cleanup()
     return "ok"
