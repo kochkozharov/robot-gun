@@ -21,7 +21,6 @@ def fire():
     GPIO.output(gpio_fire, GPIO.HIGH)
     while GPIO.input(gpio_signal) == GPIO.HIGH:
         time.sleep(0.01)
-    GPIO.cleanup()
     return "ok"
 
 GPIO.setmode(GPIO.BCM)
