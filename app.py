@@ -24,23 +24,14 @@ def fire():
     GPIO.cleanup()
     return "ok"
 
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(13, GPIO.OUT)
+pwm = GPIO.PWM(13, 100)
+pwm.start(5)
 
 @app.route('/servo/<int:angle>')
 def servo(angle):
-    GPIO.setmode(GPIO.BCM)
-    gpio_servo=13
-    GPIO.setup(gpio_servo, GPIO.OUT)
-    pwm = GPIO.PWM(gpio_servo,50)
-    pwm.start(angle_to_percent(0))
-    time.sleep(1)
-    pwm.ChangeDutyCycle(angle_to_percent(angle))
-    time.sleep(1)
-    pwm.stop()
-    GPIO.cleanup()
+    duty = float(angle) / 10.0 + 2.5
+    global pwm
+    pwm.ChangeDutyCycle(duty)
     return "ok"
-
-def angle_to_percent (angle) :
-    minDC = 1.75
-    maxDC = 13.15
-    requiredDC = (angle/180*(maxDC-minDC)+minDC)/100*2000
-    return requiredDC

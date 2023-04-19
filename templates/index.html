@@ -5,15 +5,18 @@
     <title>Fire Page</title>
     <script type="text/javascript">        
         function sendMotion (action) {
-           request = new XMLHttpRequest ( );
-           request.open ("GET", action, true);
-           request.send ( );
+           request = new XMLHttpRequest();
+           request.open("GET", action, true);
+           request.send();
+        }
+        function range() {
+            return "servo/"+document.getElementById("angle").value;
         }
     </script>
 </head>
 <body>
     <h2>Fire page</h2>
-    <input type="button" value="fire" id="fire" onclick="sendMotion ('fire');"/>
-    <input type="button" value="fire" id="fire" onclick="sendMotion ('fire');"/>
+    <input type="button" value="fire" id="fire" onclick="sendMotion('fire');"/>
+    <input type="range" min="0" max="180" id="angle" step="1" oninput="sendMotion(range());"/> 
 </body>
 </html>
