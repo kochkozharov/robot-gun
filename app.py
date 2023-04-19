@@ -31,7 +31,7 @@ pwm.start(5)
 
 @app.route('/servo/<int:angle>')
 def servo(angle):
-    duty = float(angle) / 10.0 + 2.5
+    duty = float(angle) / 2.5 + 2.5
     global pwm
     pwm.ChangeDutyCycle(duty)
     return "ok"
