@@ -5,6 +5,7 @@ import RPi.GPIO as GPIO
 import time
 from markupsafe import escape
 from flask import Flask, render_template, Response, request
+from camera_pi import Camera
 app = Flask(__name__)
 
 GPIO.setmode(GPIO.BCM)
@@ -47,3 +48,15 @@ def servo2(angle):
     global pwm2
     pwm2.ChangeDutyCycle(duty)
     return "ok"
+
+def gen(camera):
+    """Video streaming generator function."""
+    while True:
+        frame = camera.get_frame()
+        yield (b'--frame\r\n'
+               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+
+@app.route('/video_feed')
+def video_feed():
+    return Response(gen(Camera()), mimetype='multipart/x-mixed-replace; boundary=frame')
+
