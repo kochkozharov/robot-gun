@@ -15,6 +15,7 @@ pwm2 = GPIO.PWM(13, 100)
 pwm1.start(5)
 pwm2.start(5)
 
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -29,6 +30,8 @@ def fire():
     GPIO.output(gpio_fire, GPIO.HIGH)
     while GPIO.input(gpio_signal) == GPIO.HIGH:
         time.sleep(0.01)
+    GPIO.setup(gpio_fire, GPIO.LOW)
+    GPIO.cleanup(gpio_fire)
     return "ok"
 
 @app.route('/servo1/<int:angle>')
