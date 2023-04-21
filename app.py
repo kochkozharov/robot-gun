@@ -9,11 +9,8 @@ from camera_pi import Camera
 app = Flask(__name__)
 
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(12, GPIO.OUT)
 GPIO.setup(13, GPIO.OUT)
-pwm1 = GPIO.PWM(12, 100)
 pwm2 = GPIO.PWM(13, 100)
-pwm1.start(5)
 pwm2.start(5)
 
 
@@ -38,8 +35,12 @@ def fire():
 @app.route('/servo1/<int:angle>')
 def servo1(angle):
     duty = float(angle) / 2.5 + 2.5
-    global pwm1
+    GPIO.setup(12, GPIO.OUT)
+    pwm1 = GPIO.PWM(12, 100)
+    pwm1.start(5)
     pwm1.ChangeDutyCycle(duty)
+    time.sleep(0.2)
+    pwm1.stop()
     return "ok"
 
 @app.route('/servo2/<int:angle>')
