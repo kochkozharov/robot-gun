@@ -7,8 +7,8 @@ from camera_pi import Camera
 from gpiozero.pins.pigpio import PiGPIOFactory
 app = Flask(__name__)
 factory = PiGPIOFactory()
-pwm1 = AngularServo(12, initial_angle=0, min_angle=0, max_angle=120, min_pulse_width=1/1000, max_pulse_width=25/10000, pin_factory=factory)
-pwm2 = AngularServo(13, initial_angle=0, min_angle=0, max_angle=120, min_pulse_width=1/1000, max_pulse_width=25/10000, pin_factory=factory)
+pwm1 = AngularServo(12, initial_angle=60, min_angle=0, max_angle=120, min_pulse_width=1/1000, max_pulse_width=25/10000, pin_factory=factory)
+pwm2 = AngularServo(13, initial_angle=60, min_angle=0, max_angle=120, min_pulse_width=1/1000, max_pulse_width=25/10000, pin_factory=factory)
 
 @app.route('/')
 def index():
