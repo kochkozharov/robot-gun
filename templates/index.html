@@ -17,8 +17,8 @@
 <body>
     <h2>Fire page</h2>
     <input type="button" value="fire" id="fire" onclick="sendMotion('fire');"/>
-    <input type="range" min="0" max="56" id="angle1" step="2" oninput="sendMotion(range(1));"/> 
-    <input type="range" min="0" max="56" id="angle2" step="2" oninput="sendMotion(range(2));"/> 
+    <input type="range" min="0" max="120" id="angle1" step="2" oninput="sendMotion(range(1));"/> 
+    <input type="range" min="0" max="120" id="angle2" step="2" oninput="sendMotion(range(2));"/> 
     <div class="video">
     <p>Video</p>
         <img class="play" src="{{ url_for('video_feed') }}">

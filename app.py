@@ -1,13 +1,13 @@
 #!/usr/bin/env python
-from importlib import import_module
-import os
 import RPi.GPIO as GPIO
 import time
-from markupsafe import escape
-from flask import Flask, render_template, Response, request
+from flask import Flask, render_template, Response
+from gpiozero import AngularServo
 from camera_pi import Camera
 app = Flask(__name__)
 
+servo1 = AngularServo(12, initial_angle=60, min_angle=0, max_angle=120, min_pulse_width=1/1000, max_pulse_width=25/10000)
+servo2 = AngularServo(13, initial_angle=60, min_angle=0, max_angle=120, min_pulse_width=1/1000, max_pulse_width=25/10000)
 
 @app.route('/')
 def index():
@@ -29,26 +29,14 @@ def fire():
 
 @app.route('/servo1/<int:angle>')
 def servo1(angle):
-    GPIO.setmode(GPIO.BCM)
-    duty = float(angle) / 2.5 + 2.5
-    GPIO.setup(12, GPIO.OUT)
-    pwm1 = GPIO.PWM(12, 100)
-    pwm1.start(5)
-    pwm1.ChangeDutyCycle(duty)
-    time.sleep(0.2)
-    pwm1.stop()
+    global servo1
+    servo1.angle
     return "ok"
 
 @app.route('/servo2/<int:angle>')
 def servo2(angle):
-    GPIO.setmode(GPIO.BCM)
-    GPIO.setup(13, GPIO.OUT)
-    duty = float(angle) / 2.5 + 2.5
-    pwm2 = GPIO.PWM(13, 100)
-    pwm2.start(5)
-    pwm2.ChangeDutyCycle(duty)
-    time.sleep(0.2)
-    pwm2.stop()
+    global servo1
+    servo1.angle
     return "ok"
 
 def gen(camera):
