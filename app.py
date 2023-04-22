@@ -6,8 +6,8 @@ from gpiozero import AngularServo
 from camera_pi import Camera
 app = Flask(__name__)
 
-servo1 = AngularServo(12, initial_angle=60, min_angle=0, max_angle=120, min_pulse_width=1/1000, max_pulse_width=25/10000)
-servo2 = AngularServo(13, initial_angle=60, min_angle=0, max_angle=120, min_pulse_width=1/1000, max_pulse_width=25/10000)
+servo1 = AngularServo(12, initial_angle=0, min_angle=0, max_angle=120, min_pulse_width=1/1000, max_pulse_width=25/10000)
+servo2 = AngularServo(13, initial_angle=0, min_angle=0, max_angle=120, min_pulse_width=1/1000, max_pulse_width=25/10000)
 
 @app.route('/')
 def index():
@@ -28,15 +28,17 @@ def fire():
     return "ok"
 
 @app.route('/servo1/<int:angle>')
-def servo1(angle):
+def _servo1(angle):
     global servo1
-    servo1.angle
+    servo1.angle = angle
+    time.sleep(0.1)
     return "ok"
 
 @app.route('/servo2/<int:angle>')
-def servo2(angle):
-    global servo1
-    servo1.angle
+def _servo2(angle):
+    global servo2
+    servo2.angle = angle
+    time.sleep(0.1)
     return "ok"
 
 def gen(camera):
