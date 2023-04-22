@@ -1,14 +1,16 @@
 #!/usr/bin/env python
 import RPi.GPIO as GPIO
 import time
+import pigpio
 from flask import Flask, render_template, Response
-from gpiozero import AngularServo
 from camera_pi import Camera
 from gpiozero.pins.pigpio import PiGPIOFactory
 app = Flask(__name__)
-factory = PiGPIOFactory()
-pwm1 = AngularServo(12, initial_angle=60, min_angle=0, max_angle=120, min_pulse_width=1/1000, max_pulse_width=25/10000, pin_factory=factory)
-pwm2 = AngularServo(13, initial_angle=60, min_angle=0, max_angle=120, min_pulse_width=1/1000, max_pulse_width=25/10000, pin_factory=factory)
+
+servo2=12
+pwm2=pigpio.pi()
+pwm2.set_mode(servo2, pigpio.OUTPUT)
+pwm2.set_PWM_frequency(servo2, 50)
 
 @app.route('/')
 def index():
@@ -28,17 +30,25 @@ def fire():
     GPIO.cleanup(gpio_fire)
     return "ok"
 
-@app.route('/servo1/<int:angle>')
-def servo1(angle):
-    global pwm1
-    pwm1.angle = angle
-    return "ok"
+#@app.route('/servo1/<int:anglea>')
+#def servo1(angle):
+#    global pwm1
+#    pwm1.angle = angle
+#    return "ok"
 
-@app.route('/servo2/<int:angle>')
-def servo2(angle):
-    global pwm2
-    pwm2.angle = angle
-    return "ok"
+@app.route("/servo/<int:number>/<int:pulsewidth>")
+def servo(number, pulsewidth):
+    global pwm1, pwm2
+    if pulsewidth>=500 and pulsewidth<=2500:
+        if number==1:
+            return "no"
+        elif number==2:    
+            pwm2.set_servo_pulsewidth(servo2,pulsewidth)
+            return "ok"
+        else:
+            return "no"
+    else:
+        return "no"
 
 def gen(camera):
     """Video streaming generator function."""
