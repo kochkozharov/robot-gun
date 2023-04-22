@@ -5,15 +5,9 @@ import RPi.GPIO as GPIO
 import time
 from markupsafe import escape
 from flask import Flask, render_template, Response, request
+from camera_pi import Camera
 app = Flask(__name__)
 
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(12, GPIO.OUT)
-GPIO.setup(13, GPIO.OUT)
-pwm1 = GPIO.PWM(12, 100)
-pwm2 = GPIO.PWM(13, 100)
-pwm1.start(5)
-pwm2.start(5)
 
 @app.route('/')
 def index():
@@ -29,18 +23,42 @@ def fire():
     GPIO.output(gpio_fire, GPIO.HIGH)
     while GPIO.input(gpio_signal) == GPIO.HIGH:
         time.sleep(0.01)
+    GPIO.setup(gpio_fire, GPIO.LOW)
+    GPIO.cleanup(gpio_fire)
     return "ok"
 
 @app.route('/servo1/<int:angle>')
 def servo1(angle):
+    GPIO.setmode(GPIO.BCM)
     duty = float(angle) / 2.5 + 2.5
-    global pwm1
+    GPIO.setup(12, GPIO.OUT)
+    pwm1 = GPIO.PWM(12, 100)
+    pwm1.start(5)
     pwm1.ChangeDutyCycle(duty)
+    time.sleep(0.2)
+    pwm1.stop()
     return "ok"
 
 @app.route('/servo2/<int:angle>')
 def servo2(angle):
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(13, GPIO.OUT)
     duty = float(angle) / 2.5 + 2.5
-    global pwm2
+    pwm2 = GPIO.PWM(13, 100)
+    pwm2.start(5)
     pwm2.ChangeDutyCycle(duty)
+    time.sleep(0.2)
+    pwm2.stop()
     return "ok"
+
+def gen(camera):
+    """Video streaming generator function."""
+    while True:
+        frame = camera.get_frame()
+        yield (b'--frame\r\n'
+               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+
+@app.route('/video_feed')
+def video_feed():
+    return Response(gen(Camera()), mimetype='multipart/x-mixed-replace; boundary=frame')
+
