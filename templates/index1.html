@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>onclick</title>
+    <link rel="stylesheet" href="style/style.css">
+    <script type="text/javascript">        
+        function sendMotion (action) {
+           request = new XMLHttpRequest();
+           request.open("GET", action, true);
+           request.send();
+        }
+        function range(n) {
+            return "servo"+n+"/"+document.getElementById("angle"+n).value;
+        }
+    </script>
+<style>
+body {
+    background-color: #D1D1D1;
+}
+.ball {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 100%;
+  transform: translate(-50%, -50%);
+}
+#image-container {
+  position: relative;
+  width: 500px;
+  height: 300px;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+}
+
+.image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 100%;
+  transform: translate(-50%, -50%);
+}
+
+#left {
+    -moz-transform: rotate(-90deg); /* Для Firefox */
+    -ms-transform: rotate(-90deg); /* Для IE */
+    -webkit-transform: rotate(-90deg); /* Для Safari, Chrome, iOS */
+    -o-transform: rotate(-90deg); /* Для Opera */
+    transform: rotate(-90deg);
+  }
+  #down {
+    -moz-transform: rotate(180deg); /* Для Firefox */
+    -ms-transform: rotate(180deg); /* Для IE */
+    -webkit-transform: rotate(180deg); /* Для Safari, Chrome, iOS */
+    -o-transform: rotate(180deg); /* Для Opera */
+    transform: rotate(180deg);
+  }
+  #right {
+    -moz-transform: rotate(90deg); /* Для Firefox */
+    -ms-transform: rotate(90deg); /* Для IE */
+    -webkit-transform: rotate(90deg); /* Для Safari, Chrome, iOS */
+    -o-transform: rotate(90deg); /* Для Opera */
+    transform: rotate(90deg);
+  }
+#joy > div{
+    width: 100px;
+    max-width: 100px;
+    float: left;
+}
+#joy > div > div {
+    width: 100px;
+    height: 100px;
+}
+
+#fire_button {
+    position: relative;
+    left: 650px;
+    top: 50px;
+}
+ </style>
+</head>
+<body>
+    <center>
+      <h1>СТРАНИЦА УПРАВЛЕНИЯ СТРЕЛЬБОЙ<h1/>
+    </center>
+    <center>
+      <div id="image-container">
+        <div class="video">
+            <img class="play" src="{{ url_for('video_feed') }}">
+        </div>
+        <img src="static/ruler.png" class="ball">
+        <img src="static/aim.png" class="image">
+      </div>
+    </center>
+    <div id="joy">
+        <div>
+            <div></div>
+            <div><input type="image" src="static/arrow.png" width="100" id="left" /></div>
+            <div></div>
+        </div>
+        <div>
+            <div><input type="image" src="static/arrow.png" width="100" class="top" id="up"/></div>
+            <div><input type="image" src="static/middle.png" width="100" class="middle"/></div>
+            <div><input type="image" src="static/arrow.png" width="100" id="down" /></div>
+        </div>
+        <div>
+            <div></div>
+            <div><input type="image" src="static/arrow.png" width="100" id="right" /></div>
+            <div></div>
+        </div>
+    </div>
+    <div id="fire_button"><input type="image" src="static/button.png" width="200" value="fire" id="fire" onclick="sendMotion('fire');"/></div>
+<script>
+let ball = document.querySelector('.ball');
+let upButton = document.querySelector('#up');
+let downButton = document.querySelector('#down');
+let leftButton = document.querySelector('#left');
+let rightButton = document.querySelector('#right');
+document.addEventListener('keydown', function(e){
+    console.log('key code - ', e.keyCode);
+    if(e.keyCode == 38||e.keyCode == 87){
+        let goUp = ball.offsetTop;
+        console.log(goUp);
+        ball.style.top = goUp - 10 + "px";
+    }
+    if(e.keyCode == 40||e.keyCode == 83){
+        let goDown = ball.offsetTop
+        ball.style.top = goDown + 10 + "px"
+    }
+    if(e.keyCode == 37||e.keyCode == 65){
+        let goLeft = ball.offsetLeft
+        ball.style.left = goLeft - 10 + "px"
+    }
+    if(e.keyCode == 39||e.keyCode == 68){
+        let goRight = ball.offsetLeft
+        ball.style.left = goRight + 10 + "px"
+    }
+});
+upButton.onclick = function() {
+    ball.style.top = ball.offsetTop - 10 + 'px';
+}
+downButton.onclick = function() {
+    ball.style.top = ball.offsetTop + 10 + 'px';
+}
+
+</script>
+</body>
+</html>
