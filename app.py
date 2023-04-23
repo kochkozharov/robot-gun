@@ -38,7 +38,7 @@ def fire():
 
 @app.route("/servo/<int:number>/<int:pulsewidth>")
 def servo(number, pulsewidth):
-    global pwm1, pwm2
+    global pwm2
     if pulsewidth>=500 and pulsewidth<=2500:
         if number==1:
             return "no"
