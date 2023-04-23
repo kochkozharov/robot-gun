@@ -37,7 +37,7 @@ def fire():
 #    pwm1.angle = angle
 #    return "ok"
 
-@app.route("/servo/<int:number>/<int:pulsewidth>")
+@app.route("/servo/<int:number>/<int(signed=True):pulsewidth>")
 def servo(number, pulsewidth):
     global pwm2
     if number==1:
