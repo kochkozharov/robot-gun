@@ -11,6 +11,7 @@ servo2=12
 pwm2=pigpio.pi()
 pwm2.set_mode(servo2, pigpio.OUTPUT)
 pwm2.set_PWM_frequency(servo2, 50)
+pwm2.set_servo_pulsewidth(servo2,1500)
 
 @app.route('/')
 def index():
@@ -39,11 +40,12 @@ def fire():
 @app.route("/servo/<int:number>/<int:pulsewidth>")
 def servo(number, pulsewidth):
     global pwm2
-    if pulsewidth>=500 and pulsewidth<=2500:
-        if number==1:
-            return "no"
-        elif number==2:    
-            pwm2.set_servo_pulsewidth(servo2,pulsewidth)
+    if number==1:
+        return "no"
+    elif number==2:    
+        cur_plswdth=pwm2.get_servo_pulsewidth(12)
+        if (cur_plswdth+pulsewidth>=500 and cur_plswdth+pulsewidth<=2500):
+            pwm2.set_servo_pulsewidth(servo2,cur_plswdth+pulsewidth)
             return "ok"
         else:
             return "no"
