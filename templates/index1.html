@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>onclick</title>
+    <title>Fire page</title>
     <link rel="stylesheet" href="style/style.css">
-    <script type="text/javascript">        
+    <script type="text/javascript">
         function sendMotion (action) {
            request = new XMLHttpRequest();
            request.open("GET", action, true);
@@ -14,6 +14,7 @@
             return "servo"+n+"/"+document.getElementById("angle"+n).value;
         }
     </script>
+
 <style>
 body {
     background-color: #D1D1D1;
@@ -27,8 +28,8 @@ body {
 }
 #image-container {
   position: relative;
-  width: 500px;
-  height: 300px;
+  width: 640px;
+  height: 360px;
   overflow: hidden;
   margin: 0 auto;
 }
@@ -92,9 +93,8 @@ body {
     </center>
     <center>
       <div id="image-container">
-        <div class="video">
-            <img class="play" src="{{ url_for('video_feed') }}">
-        </div>
+        /*<video src="static/sample-5s.webm" class="video" id="video" autoplay loop muted></video>*/
+        <video><img class="play" src="{{ url_for('video_feed') }}"></video>
         <img src="static/ruler.png" class="ball">
         <img src="static/aim.png" class="image">
       </div>
@@ -119,36 +119,92 @@ body {
     <div id="fire_button"><input type="image" src="static/button.png" width="200" value="fire" id="fire" onclick="sendMotion('fire');"/></div>
 <script>
 let ball = document.querySelector('.ball');
+let video = document.querySelector('.video');
 let upButton = document.querySelector('#up');
 let downButton = document.querySelector('#down');
 let leftButton = document.querySelector('#left');
 let rightButton = document.querySelector('#right');
 document.addEventListener('keydown', function(e){
     console.log('key code - ', e.keyCode);
-    if(e.keyCode == 38||e.keyCode == 87){
-        let goUp = ball.offsetTop;
-        console.log(goUp);
-        ball.style.top = goUp - 10 + "px";
-    }
-    if(e.keyCode == 40||e.keyCode == 83){
-        let goDown = ball.offsetTop
-        ball.style.top = goDown + 10 + "px"
-    }
-    if(e.keyCode == 37||e.keyCode == 65){
-        let goLeft = ball.offsetLeft
-        ball.style.left = goLeft - 10 + "px"
-    }
-    if(e.keyCode == 39||e.keyCode == 68){
-        let goRight = ball.offsetLeft
-        ball.style.left = goRight + 10 + "px"
-    }
 });
-upButton.onclick = function() {
-    ball.style.top = ball.offsetTop - 10 + 'px';
+
+var UP = false;
+var DOWN = false;
+var LEFT = false;
+var RIGHT = false;
+
+function move() {
+
+	if(UP) {
+		if (ball.getBoundingClientRect().top > video.getBoundingClientRect().top - 180) {
+		    ball.style.top = ball.offsetTop - 10 + 'px';
+		    //здесь нужно вставить код на движение серво вверх
+		}
+	}
+	if(DOWN) {
+		if (ball.getBoundingClientRect().bottom < video.getBoundingClientRect().bottom + 180) {
+		    ball.style.top = ball.offsetTop + 10 + 'px';
+		    //здесь нужно вставить код на движение серво вниз
+		}
+	}
+	if(LEFT) {
+        //ball.style.left = ball.offsetLeft - 10 + "px"
+        //здесь нужно вставить код на движение серво влево
+	}
+	if(RIGHT) {
+        //ball.style.left = ball.offsetLeft + 10 + "px"
+        //здесь нужно вставить код на движение серво вправо
+	}
+
 }
-downButton.onclick = function() {
-    ball.style.top = ball.offsetTop + 10 + 'px';
+
+document.onkeydown = function(e) {
+	if(e.keyCode == 38||e.keyCode == 87) UP = true;
+	if(e.keyCode == 40||e.keyCode == 83) DOWN = true;
+	if(e.keyCode == 37||e.keyCode == 65) LEFT = true;
+	if(e.keyCode == 39||e.keyCode == 68) RIGHT = true;
 }
+
+document.onkeyup = function(e) {
+	if(e.keyCode == 38||e.keyCode == 87) UP = false;
+	if(e.keyCode == 40||e.keyCode == 83) DOWN = false;
+	if(e.keyCode == 37||e.keyCode == 65) LEFT = false;
+	if(e.keyCode == 39||e.keyCode == 68) RIGHT = false;
+}
+
+upButton.onmousedown = function() {
+    UP = true;
+}
+
+upButton.onmouseup = function() {
+    UP = false;
+}
+
+downButton.onmousedown = function() {
+    DOWN = true;
+}
+
+downButton.onmouseup = function() {
+    DOWN = false;
+}
+
+leftButton.onmousedown = function() {
+    LEFT = true;
+}
+
+leftButton.onmouseup = function() {
+    LEFT = false;
+}
+
+rightButton.onmousedown = function() {
+    RIGHT = true;
+}
+
+rightButton.onmouseup = function() {
+    RIGHT = false;
+}
+
+setInterval (move, 40);
 
 </script>
 </body>
