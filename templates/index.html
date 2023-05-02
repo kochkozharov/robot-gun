@@ -93,7 +93,7 @@ body {
     </center>
     <center>
       <div id="image-container">
-        <video><img class="play" src="{{ url_for('video_feed') }}"></video>
+        <img class="play" src="static/pic.jpg">
         <img src="static/ruler.png" class="ball">
         <img src="static/aim.png" class="image">
       </div>
@@ -118,7 +118,7 @@ body {
     <div id="fire_button"><input type="image" src="static/button.png" width="200" value="fire" id="fire" onclick="sendMotion('fire');"/></div>
 <script>
 let ball = document.querySelector('.ball');
-let video = document.querySelector('.video');
+let video = document.querySelector('.play');
 let upButton = document.querySelector('#up');
 let downButton = document.querySelector('#down');
 let leftButton = document.querySelector('#left');
@@ -144,7 +144,7 @@ function move() {
 	if(DOWN) {
 		if (ball.getBoundingClientRect().bottom < video.getBoundingClientRect().bottom + 180) {
 		    ball.style.top = ball.offsetTop + 10 + 'px';
-            sendMotion("servo/2/-250");
+            sendMotion("servo/2/z1");
 		    //здесь нужно вставить код на движение серво вниз
 		}
 	}
