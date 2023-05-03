@@ -17,4 +17,4 @@ python3 -m venv /home/admin/robot_gun/venv &&
 pip install -r /home/admin/robot_gun/requirements.txt &&
 systemctl enable autohotspot.service &&
 systemctl enable robotgun.service &&
-systemctl enable pigpio.service &&
+systemctl enable pigpio.service
