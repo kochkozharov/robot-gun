@@ -15,7 +15,7 @@ pwm2.set_servo_pulsewidth(servo2,1500)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', start_value=(pwm2.get_servo_pulsewidth(13)-700)/16)
 
 @app.route("/fire")
 def fire():
