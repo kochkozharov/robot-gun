@@ -2,6 +2,8 @@
 Description=Robot Gun flask app
 After=network-online.target
 Wants=network-online.target
+After=pigpiod.service
+Requires=pigpiod.service
 
 [Service]
 User=admin
