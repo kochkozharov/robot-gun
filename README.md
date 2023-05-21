@@ -11,7 +11,8 @@
 2. Изучение необходимой литературы 
 3. Установка пушки
 4. Создание контроллера
-5. Создание мишени
+5. Исправление багов серводвигателей и пушки
+
 
 ### **Команда**
 
@@ -32,7 +33,7 @@
 ### **Ссылки**
 Miro: https://miro.com/app/board/uXjVPhjRGJ0=/     
 Trello: https://trello.com/b/Ce0M3ckV/проект
-
+Паспорт проекта: https://docs.google.com/document/d/1gG5YquecGiLvQ7yznsQgO7weUjUDbJEx/edit
 
 Дата начала проекта: 20.02.2023
 
