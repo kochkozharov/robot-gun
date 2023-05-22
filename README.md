@@ -32,7 +32,7 @@
 
 ### **Ссылки**
 Miro: https://miro.com/app/board/uXjVPhjRGJ0=/     
-Trello: https://trello.com/b/Ce0M3ckV/проект
+Trello: https://trello.com/b/Ce0M3ckV/проект      
 Паспорт проекта: https://docs.google.com/document/d/1gG5YquecGiLvQ7yznsQgO7weUjUDbJEx/edit
 
 Дата начала проекта: 20.02.2023
