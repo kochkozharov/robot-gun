@@ -39,6 +39,11 @@ Trello: https://trello.com/b/Ce0M3ckV/проект
 
 Дата окончания проекта: 30.04.2023
 
+# Схема
+
+![alt text](https://github.com/kochkozharov/robot-gun/blob/main/Robogun_-_%D0%A4%D0%B8%D0%BD%D0%B0%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F_%D1%81%D1%85%D0%B5%D0%BC%D0%B0.jpg)
+
+
 # Wifi setup
 
 ## Установка RaspberryPi OS
