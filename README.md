@@ -1,7 +1,7 @@
 # Robot_gun
 
-![gun_rotation](https://github.com/kochkozharov/robot-gun/blob/main/images/)
-![gun_fire](https://github.com/kochkozharov/robot-gun/blob/main/images/)
+![gun_rotation](https://github.com/kochkozharov/robot-gun/blob/main/images/servo1.gif)
+![gun_fire](https://github.com/kochkozharov/robot-gun/blob/main/images/servo2.gif)
 
 ### **Тема проекта**
 Проектирование метательного устройства
@@ -44,7 +44,7 @@ Trello: https://trello.com/b/Ce0M3ckV/проект
 
 # Схема
 
-![scheme](https://github.com/kochkozharov/robot-gun/blob/main/images/Robogun_-_%D0%A4%D0%B8%D0%BD%D0%B0%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F_%D1%81%D1%85%D0%B5%D0%BC%D0%B0.jpg)
+![scheme](https://github.com/kochkozharov/robot-gun/blob/main/images/Robogun_scheme.jpg)
 
 
 # Wifi setup
