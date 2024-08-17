@@ -1,35 +1,40 @@
 # Robot_gun
 
-### **Project topic**
-Designing a homing propellant device
+### **Тема проекта**
+Проектирование метательного устройства
 
-### **Project goal**
-Create a gun which will be installed on a robodog. This gun can be controlled via the console
+### **Цель проекта**
+Сделать управляемую пушку на робособаку, которая будет демонстрироваться на дне открытых дверей.
 
-### **Project Tasks**
-1. Elaboration of the concept
-2. Study of the necessary literature
-3. Installing the gun
-4. Creating a controller that allows  to control the gun
-5. Create a target
+### **Задача проекта**
+1. Проработка концепции  
+2. Изучение необходимой литературы 
+3. Установка пушки
+4. Создание контроллера
+5. Исправление багов серводвигателей и пушки
 
 
-### **Project team**
+### **Команда**
 
-|Name| Role |
-|---|---|
-|Galkin Alexey Dmitrievich| Teamlead|
-|Tsirulev Nikolay Vladimirovich| Backend| 
-|Sletyurin Kirill Sergeevich| Physicist-mathematician| 
-|Kudryavov Leonid Vadimovich| 3D |
-|Kochkozharov Ivan Vyacheslavovich| DevOps|
+|ФИО| Роль | Задача |
+|---|---|---|
+|Галкин Алексей Дмитриевич| Тимлид| Координация действий участников, распределение задач команды|
+|Цирулев Николай Владимирович| Fullstack-разработчик| Создание контроллера| 
+|Слетюрин Кирилл Сергеевич|Физик-электрик| Создание электрической схемы |
+|Кудрявов Леонид Вадимович| 3D моделист| Создание 3D модели|
+|Кочкожаров Иван Вячеславович| DevOps| Настройка операционной системы |
 
-### **Project customer**
-Department 806 “Computational Mathematics and programming".
+### **Заказчик проекта**
+Кафедра 806 “Вычислительная математика и программирование”.
 
-### **Project end user**
-Students of the department 806, visitors of open days.
+### **Конечный пользователь**
+Абитуриенты МАИ, кафедра 806, посетители дней открытых дверей.
 
-Project start date: 20.02.2023
+### **Ссылки**
+Miro: https://miro.com/app/board/uXjVPhjRGJ0=/     
+Trello: https://trello.com/b/Ce0M3ckV/проект      
+Паспорт проекта: https://docs.google.com/document/d/1gG5YquecGiLvQ7yznsQgO7weUjUDbJEx/edit
 
-Approximate end date of the project is 30.04.2023
+Дата начала проекта: 20.02.2023
+
+Дата окончания проекта: 30.04.2023
